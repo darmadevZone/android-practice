@@ -10,7 +10,7 @@ buildscript {
         gradlePluginPortal()
     }
     dependencies {
-        val kotlin_version = "1.9.10"
+        val kotlin_version = "1.9.0"
         classpath("com.android.tools.build:gradle:7.4.2")
         classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version")
         classpath("org.jlleitschuh.gradle:ktlint-gradle:11.1.0")
