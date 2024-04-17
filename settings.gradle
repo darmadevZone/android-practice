@@ -1,3 +1,4 @@
 rootProject.name = "android-traning-template"
 include ':app'
 include ':api'
+enableFeaturePreview('VERSION_CATALOGS')
