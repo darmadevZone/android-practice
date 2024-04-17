@@ -23,9 +23,6 @@ android {
     composeOptions {
         kotlinCompilerExtensionVersion = "1.5.1"
     }
-
-
-
     buildTypes {
         release {
             isMinifyEnabled = false
@@ -53,8 +50,6 @@ dependencies {
     testImplementation(libs.junit)
     androidTestImplementation(libs.ext.junit)
     androidTestImplementation(libs.espresso.core)
-
-
     val composeBom = platform(libs.compose.bom)
     implementation(composeBom)
     androidTestImplementation(composeBom)
