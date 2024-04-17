@@ -85,30 +85,22 @@ fun SomeLayout() {
 }
 
 @Composable
-fun Temperature(modifier: Modifier = Modifier) {
-    val maxText = stringResource(id = R.string.max)
-    val minText = stringResource(id = R.string.min)
-    Row(modifier = modifier) {
-        Text(
-            text = minText,
-            modifier = Modifier.weight(1f),
-            textAlign = TextAlign.Center
-        )
-        Text(
-            text = maxText,
-            modifier = Modifier.weight(1f),
-            textAlign = TextAlign.Center
-        )
-    }
-}
+fun WeatherContent(weather: String) {
+    val weatherInfo = when (weather) {
+        "sunny" -> {
+            ImageConstants.sunny
+        }
 
-@Composable
-fun RowButtons(modifier: Modifier = Modifier) {
-    val reload = stringResource(id = R.string.reload)
-    val next = stringResource(id = R.string.next)
-    Row(modifier = modifier) {
-        Button(modifier = Modifier.weight(1f), onClick = {}) {
-            Text(text = reload)
+        "snow" -> {
+            ImageConstants.snow
+        }
+
+        "rainy" -> {
+            ImageConstants.rainy
+        }
+
+        "cloudy" -> {
+            ImageConstants.cloudy
         }
         Button(modifier = Modifier.weight(1f), onClick = {}) {
             Text(text = next)
