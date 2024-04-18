@@ -23,9 +23,6 @@ android {
     composeOptions {
         kotlinCompilerExtensionVersion = "1.5.1"
     }
-
-
-
     buildTypes {
         release {
             isMinifyEnabled = false
@@ -53,31 +50,29 @@ dependencies {
     testImplementation(libs.junit)
     androidTestImplementation(libs.ext.junit)
     androidTestImplementation(libs.espresso.core)
-
-
-    val composeBom = platform("androidx.compose:compose-bom:2024.02.01")
+    val composeBom = platform(libs.compose.bom)
     implementation(composeBom)
     androidTestImplementation(composeBom)
-    implementation("androidx.compose.runtime:runtime")
+    implementation(libs.compose.runtime)
     //setContentを使用するためインポートしてください
     implementation(libs.androidx.activity.compose)
 
     // Material Design 3
-    implementation("androidx.compose.material3:material3")
+    implementation(libs.compose.material3)
     // or Material Design 2
-    implementation("androidx.compose.material:material")
+    implementation(libs.compose.material)
     // or skip Material Design and build directly on top of foundational components
-    implementation("androidx.compose.foundation:foundation")
+    implementation(libs.compose.foundation)
 
-    implementation("androidx.compose.ui:ui")
+    implementation(libs.compose.ui)
 
     // Android Studio Preview support
-    implementation("androidx.compose.ui:ui-tooling-preview")
-    debugImplementation("androidx.compose.ui:ui-tooling")
+    implementation(libs.compose.ui.tooling.preview)
+    debugImplementation(libs.compose.ui.tooling)
 
     // UI Tests
-    androidTestImplementation("androidx.compose.ui:ui-test-junit4")
-    debugImplementation("androidx.compose.ui:ui-test-manifest")
+    androidTestImplementation(libs.compose.ui.test.junit4)
+    debugImplementation(libs.compose.ui.test.manifest)
 
     // constraintLayout
     implementation(libs.androidx.constraintlayout)

@@ -57,5 +57,3 @@ subprojects {
         args = listOf("src/**/*.kt")
     }
 }
-
-
