@@ -71,9 +71,9 @@ fun WeatherLayout() {
                     }
             ) {
                 Image(
-                    modifier = Modifier.aspectRatio(1f / 1f),
                     painter = painterResource(id = R.drawable.droidkun),
-                    contentDescription = "droid"
+                    contentDescription = "droid",
+                    modifier = Modifier.aspectRatio(1f / 1f),
                 )
                 Temperature(modifier = Modifier.fillMaxWidth())
             }
