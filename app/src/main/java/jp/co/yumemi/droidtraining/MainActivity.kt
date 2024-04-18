@@ -8,16 +8,21 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.BoxWithConstraints
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Button
+import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
@@ -48,7 +53,6 @@ class MainActivity : ComponentActivity() {
     }
 }
 
-
 @Composable
 fun SomeLayout() {
     BoxWithConstraints {
@@ -73,13 +77,15 @@ fun SomeLayout() {
                 )
                 Temperature(modifier = Modifier.fillMaxWidth())
             }
-            RowButtons(modifier = Modifier.constrainAs(buttons) {
-                val margin = 80.dp
-                top.linkTo(images.bottom, margin = margin)
-                start.linkTo(images.start)
-                end.linkTo(images.end)
-                width = Dimension.fillToConstraints
-            })
+            RowButtons(
+                modifier = Modifier.constrainAs(buttons) {
+                    val margin = 80.dp
+                    top.linkTo(images.bottom, margin = margin)
+                    start.linkTo(images.start)
+                    end.linkTo(images.end)
+                    width = Dimension.fillToConstraints
+                }
+            )
         }
     }
 }
@@ -90,14 +96,10 @@ fun Temperature(modifier: Modifier = Modifier) {
     val minText = stringResource(id = R.string.min)
     Row(modifier = modifier) {
         Text(
-            text = minText,
-            modifier = Modifier.weight(1f),
-            textAlign = TextAlign.Center
+            text = minText, modifier = Modifier.weight(1f), textAlign = TextAlign.Center
         )
         Text(
-            text = maxText,
-            modifier = Modifier.weight(1f),
-            textAlign = TextAlign.Center
+            text = maxText, modifier = Modifier.weight(1f), textAlign = TextAlign.Center
         )
     }
 }
@@ -107,11 +109,24 @@ fun RowButtons(modifier: Modifier = Modifier) {
     val reload = stringResource(id = R.string.reload)
     val next = stringResource(id = R.string.next)
     Row(modifier = modifier) {
-        Button(modifier = Modifier.weight(1f), onClick = {}) {
-            Text(text = reload)
+        Button(
+            modifier = Modifier.weight(1f),
+            onClick = {},
+            colors = ButtonDefaults.textButtonColors(containerColor = Color.Black),
+            shape = RoundedCornerShape(5.dp),
+        ) {
+            Text(text = reload, color = Color.White)
         }
-        Button(modifier = Modifier.weight(1f), onClick = {}) {
-            Text(text = next)
+        Spacer(modifier = modifier.padding(9.dp))
+        Button(
+            modifier = Modifier.weight(1f),
+            onClick = {},
+            colors = ButtonDefaults.textButtonColors(
+                containerColor = Color.Black
+            ),
+            shape = RoundedCornerShape(5.dp),
+        ) {
+            Text(text = next, color = Color.White)
         }
     }
 }
