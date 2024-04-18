@@ -33,6 +33,11 @@ mockk = "1.13.7"
 activityComposeVersion = "1.7.0"
 compose-bom = "2024.02.01"
 
+# Constraintlayout
+constraintlayoutVersion = "2.1.4"
+constraintlayoutComposeVersion = "1.0.1"
+constraintlayoutCore = "1.0.4"
+
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
 kotlinx-coroutines-core = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core", version.ref = "kotlinx-coroutines-core" }
@@ -76,5 +81,10 @@ compose-ui-tooling = { module = "androidx.compose.ui:ui-tooling" }
 #// UI Tests
 compose-ui-test-junit4 = { module = "androidx.compose.ui:ui-test-junit4" }
 compose-ui-test-manifest = { module = "androidx.compose.ui:ui-test-manifest" }
+
+# constraintlayout
+androidx-constraintlayout = { module = "androidx.constraintlayout:constraintlayout", version.ref = "constraintlayoutVersion" }
+androidx-constraintlayout-compose = { module = "androidx.constraintlayout:constraintlayout-compose", version.ref = "constraintlayoutComposeVersion" }
+androidx-constraintlayout-core = {module = "androidx.constraintlayout:constraintlayout-core",version.ref = "constraintlayoutCore"}
 
 [plugins]
