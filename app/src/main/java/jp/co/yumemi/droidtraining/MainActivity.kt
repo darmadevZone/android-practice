@@ -1,11 +1,9 @@
 package jp.co.yumemi.droidtraining
 
 import android.os.Bundle
-import android.util.Log
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.BoxWithConstraints
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.aspectRatio
@@ -42,26 +40,21 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background,
                 ) {
-                    Box(
-                        modifier = Modifier.fillMaxSize(),
-                    ) {
-                        SomeLayout()
-                    }
+                    WeatherLayout()
                 }
             }
         }
     }
 }
 
-
 @Composable
-fun SomeLayout() {
-    val context = LocalContext.current
-    var weather by remember {
-        mutableStateOf("")
-    }
+fun WeatherLayout() {
     BoxWithConstraints {
         val imagesHalfWidth = maxWidth / 2
+        val context = LocalContext.current
+        var weather by remember {
+            mutableStateOf("")
+        }
 
         ConstraintLayout(modifier = Modifier.fillMaxSize()) {
             val (images, buttons) = createRefs()
@@ -73,20 +66,20 @@ fun SomeLayout() {
                     top.linkTo(parent.top)
                     bottom.linkTo(parent.bottom)
                 }) {
-                WeatherContent(weather = weather)
+                WeatherImage(weather = weather)
                 Temperature(modifier = Modifier.fillMaxWidth())
             }
-            RowButtons(modifier = Modifier.constrainAs(buttons) {
-                val margin = 80.dp
-                top.linkTo(images.bottom, margin = margin)
-                start.linkTo(images.start)
-                end.linkTo(images.end)
-                width = Dimension.fillToConstraints
-            },
+            RowButtons(
+                modifier = Modifier.constrainAs(buttons) {
+                    val margin = 80.dp
+                    top.linkTo(images.bottom, margin = margin)
+                    start.linkTo(images.start)
+                    end.linkTo(images.end)
+                    width = Dimension.fillToConstraints
+                },
                 onNextClick = {/* TODO */ },
                 onReloadClick = {
                     val response = YumemiWeather(context = context).fetchSimpleWeather()
-                    Log.d("response", response)
                     weather = response
                 })
         }
@@ -94,7 +87,7 @@ fun SomeLayout() {
 }
 
 @Composable
-fun WeatherContent(weather: String) {
+fun WeatherImage(weather: String) {
     val weatherInfo = when (weather) {
         "sunny" -> {
             ImageConstants.sunny
@@ -117,7 +110,6 @@ fun WeatherContent(weather: String) {
             ImageConstants.sunny
         }
     }
-
     Image(
         modifier = Modifier.aspectRatio(1f / 1f),
         painter = painterResource(weatherInfo),
@@ -125,10 +117,11 @@ fun WeatherContent(weather: String) {
     )
 }
 
+
 @Preview
 @Composable
-fun SomeLayoutPreview() {
+fun WeatherLayoutPreview() {
     Surface {
-        SomeLayout()
+        WeatherLayout()
     }
 }
