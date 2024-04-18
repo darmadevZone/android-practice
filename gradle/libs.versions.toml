@@ -1,54 +1,80 @@
 [versions]
 #implementation("androidx.core:core-ktx:1.10.1")
-androidxJunit = "1.1.5"
-appcompat = "1.6.1"
 coreKtx = "1.10.1"
 
 #implementation("androidx.appcompat:appcompat:1.6.1")
-androidx-appcompat = "1.6.1"
+appcompat = "1.6.1"
 
 #implementation("com.google.android.material:material:1.9.0")
 google-material = "1.9.0"
 
 #testImplementation("junit:junit:4.13.2")
-espressoCoreVersion = "3.5.1"
 junit = "4.13.2"
 
 #androidTestImplementation("androidx.test.ext:junit:1.1.5")
-junitJunit = "4.13.2"
-junitVersion = "1.1.5"
+extjunitVersion = "1.1.5"
 
 #androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
 espressoCore = "3.5.1"
 
-agp = "8.4.0-alpha05"
-kotlin = "1.9.0"
-lifecycleRuntimeKtx = "2.6.1"
-activityCompose = "1.8.0"
-composeBom = "2023.08.00"
+# Coroutines
 kotlinx-coroutines-core = "1.7.3"
+
+# Moshi
 moshi = "1.13.0"
+
+# Test
 google-truth = "1.1.5"
 kotlinx-coroutines-test = "1.7.3"
 robolectric = "4.10.3"
 mockk = "1.13.7"
 
 # for compose
+activityComposeVersion = "1.7.0"
+compose-bom = "2024.02.01"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
 kotlinx-coroutines-core = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core", version.ref = "kotlinx-coroutines-core" }
 appcompat = { module = "androidx.appcompat:appcompat", version.ref = "appcompat" }
-espresso-core = { module = "androidx.test.espresso:espresso-core", version.ref = "espressoCoreVersion" }
-ext-junit = { module = "androidx.test.ext:junit", version.ref = "androidxJunit" }
-junit = { module = "junit:junit", version.ref = "junitJunit" }
 google-material = { module = "com.google.android.material:material", version.ref = "google-material" }
+
+# Moshi
 moshi = { module = "com.squareup.moshi:moshi", version.ref = "moshi" }
 moshi-kotlin-codegen = { module = "com.squareup.moshi:moshi-kotlin-codegen", version.ref = "moshi" }
+
+# Test
+ext-junit = { module = "androidx.test.ext:junit", version.ref = "extjunitVersion" }
+junit = { module = "junit:junit", version.ref = "junit" }
+espresso-core = { module = "androidx.test.espresso:espresso-core", version.ref = "espressoCore" }
 google-truth = { module = "com.google.truth:truth", version.ref = "google-truth" }
 kotlinx-coroutines-test = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-test", version.ref = "kotlinx-coroutines-test" }
 robolectric = { module = "org.robolectric:robolectric", version.ref = "robolectric" }
 mockk = { module = "io.mockk:mockk", version.ref = "mockk" }
 
+androidx-activity-compose = { module = "androidx.activity:activity-compose", version.ref = "activityComposeVersion" }
+
+# for Compoase
+compose-bom = { module = "androidx.compose:compose-bom", version.ref = "compose-bom" }
+compose-runtime = { module = "androidx.compose.runtime:runtime" }
+
+#// Material Design 3
+compose-material3 = { module = "androidx.compose.material3:material3" }
+
+#  Material Design 2
+compose-material = { module = "androidx.compose.material:material" }
+
+# or skip Material Design and build directly on top of foundational components
+compose-foundation = { module = "androidx.compose.foundation:foundation" }
+
+compose-ui = { module = "androidx.compose.ui:ui" }
+
+#// Android Studio Preview support
+compose-ui-tooling-preview = { module = "androidx.compose.ui:ui-tooling-preview" }
+compose-ui-tooling = { module = "androidx.compose.ui:ui-tooling" }
+
+#// UI Tests
+compose-ui-test-junit4 = { module = "androidx.compose.ui:ui-test-junit4" }
+compose-ui-test-manifest = { module = "androidx.compose.ui:ui-test-manifest" }
 
 [plugins]
