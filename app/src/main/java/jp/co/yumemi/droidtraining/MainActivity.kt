@@ -45,7 +45,7 @@ class MainActivity : ComponentActivity() {
                     Box(
                         modifier = Modifier.fillMaxSize(),
                     ) {
-                        SomeLayout()
+                        WeatherLayout()
                     }
                 }
             }
@@ -54,7 +54,7 @@ class MainActivity : ComponentActivity() {
 }
 
 @Composable
-fun SomeLayout() {
+fun WeatherLayout() {
     BoxWithConstraints {
         val imagesHalfWidth = maxWidth / 2
 
@@ -133,8 +133,8 @@ fun RowButtons(modifier: Modifier = Modifier) {
 
 @Preview
 @Composable
-fun SomeLayoutPreview() {
+fun WeatherLayoutPreview() {
     Surface {
-        SomeLayout()
+        WeatherLayout()
     }
 }
