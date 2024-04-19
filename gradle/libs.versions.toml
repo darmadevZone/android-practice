@@ -43,6 +43,9 @@ kotlinGradlePluginVersion = "1.9.10"
 ktlintGradleVersion = "11.1.0"
 gradleVersion = "7.4.2"
 
+# viewModel
+compose-viewModel = "2.6.1"
+
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
 gradle = { module = "com.android.tools.build:gradle", version.ref = "gradleVersion" }
@@ -93,6 +96,9 @@ compose-ui-test-manifest = { module = "androidx.compose.ui:ui-test-manifest" }
 # constraintlayout
 androidx-constraintlayout = { module = "androidx.constraintlayout:constraintlayout", version.ref = "constraintlayoutVersion" }
 androidx-constraintlayout-compose = { module = "androidx.constraintlayout:constraintlayout-compose", version.ref = "constraintlayoutComposeVersion" }
-androidx-constraintlayout-core = { module = "androidx.constraintlayout:constraintlayout-core", version.ref = "constraintlayoutCore" }
+androidx-constraintlayout-core = {module = "androidx.constraintlayout:constraintlayout-core",version.ref = "constraintlayoutCore"}
+
+# viewmodel
+viewmodel-compose = { module = "androidx.lifecycle:lifecycle-viewmodel-compose", version.ref = "compose-viewModel" }
 
 [plugins]

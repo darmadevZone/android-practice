@@ -78,4 +78,7 @@ dependencies {
     implementation(libs.androidx.constraintlayout)
     implementation(libs.androidx.constraintlayout.compose)
     implementation(libs.androidx.constraintlayout.core)
+
+    // viewmodel
+    implementation(libs.viewmodel.compose)
 }
