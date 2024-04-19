@@ -8,12 +8,7 @@ enum class ImageConstants(val response: Int, val weather: String) {
     Rainy(R.drawable.rainy, "rainy"),
     Snow(R.drawable.snow, "snow"), ;
 
-class ImageConstants {
     companion object {
-        val sunny: Int = R.drawable.sunny
-        val cloudy: Int = R.drawable.cloudy
-        val rainy: Int = R.drawable.rainy
-        val snow: Int = R.drawable.snow
+        fun fromString(weather: String) = entries.find { it.weather == weather }
     }
 }
-
