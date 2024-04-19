@@ -1,52 +1,47 @@
-package jp.co.yumemi.droidtraining.presentation.screen
-
-import androidx.compose.foundation.layout.BoxWithConstraints
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.layout.Box
+import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.Modifier
-import androidx.compose.ui.unit.dp
-import androidx.constraintlayout.compose.ConstraintLayout
-import androidx.constraintlayout.compose.Dimension
-import jp.co.yumemi.droidtraining.presentation.components.RowButtons
-import jp.co.yumemi.droidtraining.presentation.components.Temperature
-import jp.co.yumemi.droidtraining.presentation.components.WeatherImage
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.ui.Alignment
+import androidx.compose.ui.platform.LocalContext
+import androidx.lifecycle.viewmodel.compose.viewModel
+import jp.co.yumemi.droidtraining.presentation.components.BoxContentLayout
+import jp.co.yumemi.droidtraining.presentation.components.ErrorAlertDialog
+import jp.co.yumemi.droidtraining.presentation.state.WeatherState
+import jp.co.yumemi.droidtraining.presentation.viewmodel.WeatherViewModel
 
 @Composable
 fun WeatherScreen(
     viewModel: WeatherViewModel = viewModel()
 ) {
-    BoxWithConstraints {
-        val imagesHalfWidth = maxWidth / 2
-
-        ConstraintLayout(modifier = Modifier.fillMaxSize()) {
-            val (images, buttons) = createRefs()
-            Column(
-                modifier = Modifier
-                    .width(imagesHalfWidth)
-                    .constrainAs(images) {
-                        start.linkTo(parent.start)
-                        end.linkTo(parent.end)
-                        top.linkTo(parent.top)
-                        bottom.linkTo(parent.bottom)
-                    }
-            ) {
-                WeatherImage(weather = weather)
-                Temperature(modifier = Modifier.fillMaxWidth())
-            }
-            RowButtons(
-                modifier = Modifier.constrainAs(buttons) {
-                    val margin = 80.dp
-                    top.linkTo(images.bottom, margin = margin)
-                    start.linkTo(images.start)
-                    end.linkTo(images.end)
-                    width = Dimension.fillToConstraints
+    val context = LocalContext.current
+    LaunchedEffect(Unit) {
+        viewModel.getWeather(context)
+    }
+    when (val weatherState = viewModel.weatherState.value) {
+        is WeatherState.Success -> {
+            BoxContentLayout(
+                onReloadClick = {
+                    viewModel.getWeather(context)
                 },
-                onNextClick = onNextClick,
-                onReloadClick = onReloadClick
+                onNextClick = {},
+                weather = weatherState.weather
             )
+        }
+
+        is WeatherState.Error -> {
+            ErrorAlertDialog(
+                onCloseClick = {},
+                onReloadClick = {
+                    viewModel.getWeather(context)
+                },
+            )
+        }
+
+        is WeatherState.Loading -> {
+            Box(contentAlignment = Alignment.Center) {
+                CircularProgressIndicator()
+            }
         }
     }
 }
