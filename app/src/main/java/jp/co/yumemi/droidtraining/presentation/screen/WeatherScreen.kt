@@ -2,6 +2,7 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.platform.LocalContext
 import androidx.lifecycle.viewmodel.compose.viewModel
@@ -18,7 +19,7 @@ fun WeatherScreen(
     LaunchedEffect(Unit) {
         viewModel.getWeather(context)
     }
-    when (val weatherState = viewModel.weatherState.value) {
+    when (val weatherState = viewModel.weatherState.collectAsState().value) {
         is WeatherState.Success -> {
             BoxContentLayout(
                 onReloadClick = {
