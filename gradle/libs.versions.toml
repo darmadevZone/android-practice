@@ -40,7 +40,7 @@ constraintlayoutCore = "1.0.4"
 
 # gradle
 kotlinGradlePluginVersion = "1.9.10"
-ktlintGradleVersion = "12.1.0"
+ktlintGradleVersion = "11.1.0"
 gradleVersion = "7.4.2"
 
 [libraries]
