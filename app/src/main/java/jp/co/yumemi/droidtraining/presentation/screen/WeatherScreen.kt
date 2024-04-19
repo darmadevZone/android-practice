@@ -16,9 +16,7 @@ import jp.co.yumemi.droidtraining.presentation.components.WeatherImage
 
 @Composable
 fun WeatherScreen(
-    weather: String,
-    onNextClick: () -> Unit,
-    onReloadClick: () -> Unit,
+    viewModel: WeatherViewModel = viewModel()
 ) {
     BoxWithConstraints {
         val imagesHalfWidth = maxWidth / 2

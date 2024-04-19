@@ -2,10 +2,11 @@ package jp.co.yumemi.droidtraining.presentation.viewmodel
 
 import android.content.Context
 import androidx.compose.runtime.mutableStateOf
+import androidx.lifecycle.ViewModel
 import jp.co.yumemi.api.YumemiWeather
 import jp.co.yumemi.droidtraining.presentation.state.WeatherState
 
-class WeatherViewModel {
+class WeatherViewModel : ViewModel() {
     private val _weatherState = mutableStateOf<WeatherState>(WeatherState.Loading)
     val weatherState = _weatherState
 
