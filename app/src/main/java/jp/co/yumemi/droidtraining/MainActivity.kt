@@ -73,7 +73,7 @@ class MainActivity : ComponentActivity() {
 
 @Preview
 @Composable
-fun SomeLayoutPreview() {
+fun WeatherPreview() {
     Surface {
         WeatherScreen(onNextClick = {}, onReloadClick = {}, weather = ImageConstants.Sunny.weather)
     }
