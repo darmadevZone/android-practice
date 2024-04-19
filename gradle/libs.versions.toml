@@ -17,15 +17,15 @@ extjunitVersion = "1.1.5"
 #androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
 espressoCore = "3.5.1"
 
-# Coroutines
-kotlinx-coroutines-core = "1.7.3"
+# Coroutines Flow Issue#14 Flowの導入で追加
+kotlinx-coroutines-core = "1.8.0"
 
 # Moshi
 moshi = "1.13.0"
 
 # Test
 google-truth = "1.1.5"
-kotlinx-coroutines-test = "1.7.3"
+kotlinx-coroutines-test = "1.8.0"
 robolectric = "4.10.3"
 mockk = "1.13.7"
 
