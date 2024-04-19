@@ -1,14 +1,16 @@
 package jp.co.yumemi.droidtraining.presentation.viewmodel
 
 import android.content.Context
-import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import jp.co.yumemi.api.YumemiWeather
 import jp.co.yumemi.droidtraining.presentation.state.WeatherState
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.asStateFlow
 
 class WeatherViewModel : ViewModel() {
-    private val _weatherState = mutableStateOf<WeatherState>(WeatherState.Loading)
-    val weatherState = _weatherState
+    private val _weatherState = MutableStateFlow<WeatherState>(WeatherState.Loading)
+    val weatherState: StateFlow<WeatherState> = _weatherState.asStateFlow()
 
     fun getWeather(context: Context) {
         try {
