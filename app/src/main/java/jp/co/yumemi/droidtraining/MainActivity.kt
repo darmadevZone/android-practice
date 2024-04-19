@@ -6,29 +6,28 @@ import androidx.activity.compose.setContent
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.BoxWithConstraints
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
-import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material3.Button
-import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.constraintlayout.compose.ConstraintLayout
 import androidx.constraintlayout.compose.Dimension
+import jp.co.yumemi.api.YumemiWeather
+import jp.co.yumemi.droidtraining.presentation.components.RowButtons
+import jp.co.yumemi.droidtraining.presentation.components.Temperature
+import jp.co.yumemi.droidtraining.presentation.constant.Image.ImageConstants
 import jp.co.yumemi.droidtraining.ui.theme.AndroidPracticeTheme
 
 class MainActivity : ComponentActivity() {
@@ -52,24 +51,22 @@ class MainActivity : ComponentActivity() {
 fun WeatherLayout() {
     BoxWithConstraints {
         val imagesHalfWidth = maxWidth / 2
+        val context = LocalContext.current
+        var weather by remember {
+            mutableStateOf("")
+        }
 
         ConstraintLayout(modifier = Modifier.fillMaxSize()) {
             val (images, buttons) = createRefs()
-            Column(
-                modifier = Modifier
-                    .width(imagesHalfWidth)
-                    .constrainAs(images) {
-                        start.linkTo(parent.start)
-                        end.linkTo(parent.end)
-                        top.linkTo(parent.top)
-                        bottom.linkTo(parent.bottom)
-                    }
-            ) {
-                Image(
-                    painter = painterResource(id = R.drawable.droidkun),
-                    contentDescription = "droid",
-                    modifier = Modifier.aspectRatio(1f / 1f),
-                )
+            Column(modifier = Modifier
+                .width(imagesHalfWidth)
+                .constrainAs(images) {
+                    start.linkTo(parent.start)
+                    end.linkTo(parent.end)
+                    top.linkTo(parent.top)
+                    bottom.linkTo(parent.bottom)
+                }) {
+                WeatherImage(weather = weather)
                 Temperature(modifier = Modifier.fillMaxWidth())
             }
             RowButtons(
@@ -79,52 +76,47 @@ fun WeatherLayout() {
                     start.linkTo(images.start)
                     end.linkTo(images.end)
                     width = Dimension.fillToConstraints
-                }
-            )
+                },
+                onNextClick = {/* TODO */ },
+                onReloadClick = {
+                    val response = YumemiWeather(context = context).fetchSimpleWeather()
+                    weather = response
+                })
         }
     }
 }
 
 @Composable
-fun Temperature(modifier: Modifier = Modifier) {
-    val maxText = stringResource(id = R.string.max)
-    val minText = stringResource(id = R.string.min)
-    Row(modifier = modifier) {
-        Text(
-            text = minText, modifier = Modifier.weight(1f), textAlign = TextAlign.Center
-        )
-        Text(
-            text = maxText, modifier = Modifier.weight(1f), textAlign = TextAlign.Center
-        )
+fun WeatherImage(weather: String) {
+    val weatherInfo = when (weather) {
+        "sunny" -> {
+            ImageConstants.sunny
+        }
+
+        "snow" -> {
+            ImageConstants.snow
+        }
+
+        "rainy" -> {
+            ImageConstants.rainy
+        }
+
+        "cloudy" -> {
+            ImageConstants.cloudy
+        }
+
+        else -> {
+            //defaultでは、sunny
+            ImageConstants.sunny
+        }
     }
+    Image(
+        modifier = Modifier.aspectRatio(1f / 1f),
+        painter = painterResource(weatherInfo),
+        contentDescription = "droid",
+    )
 }
 
-@Composable
-fun RowButtons(modifier: Modifier = Modifier) {
-    val reload = stringResource(id = R.string.reload)
-    val next = stringResource(id = R.string.next)
-    Row(modifier = modifier) {
-        Button(
-            modifier = Modifier.weight(1f),
-            onClick = {},
-            colors = ButtonDefaults.textButtonColors(containerColor = Color.Black),
-            shape = RoundedCornerShape(5.dp),
-        ) {
-            Text(text = reload, color = Color.White)
-        }
-        Spacer(modifier = modifier.padding(9.dp))
-        Button(
-            modifier = Modifier.weight(1f),
-            onClick = {},
-            colors = ButtonDefaults.textButtonColors(
-                containerColor = Color.Black
-            ),
-            shape = RoundedCornerShape(5.dp),
-        ) {
-            Text(text = next, color = Color.White)
-        }
-    }
-}
 
 @Preview
 @Composable
