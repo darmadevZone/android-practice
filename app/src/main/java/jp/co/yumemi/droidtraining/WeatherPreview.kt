@@ -3,14 +3,18 @@ package jp.co.yumemi.droidtraining
 import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.tooling.preview.Preview
+import jp.co.yumemi.droidtraining.presentation.components.BoxContentLayout
 import jp.co.yumemi.droidtraining.presentation.constant.image.ImageConstants
-import jp.co.yumemi.droidtraining.presentation.screen.WeatherScreen
 
 @Preview
 @Composable
 fun SunnyPreview() {
     Surface {
-        WeatherScreen(onNextClick = {}, onReloadClick = {}, weather = ImageConstants.Sunny.weather)
+        BoxContentLayout(
+            onNextClick = {},
+            onReloadClick = {},
+            weather = ImageConstants.Sunny.weather
+        )
     }
 }
 
@@ -18,7 +22,11 @@ fun SunnyPreview() {
 @Composable
 fun CloudyPreview() {
     Surface {
-        WeatherScreen(onNextClick = {}, onReloadClick = {}, weather = ImageConstants.Cloudy.weather)
+        BoxContentLayout(
+            onNextClick = {},
+            onReloadClick = {},
+            weather = ImageConstants.Cloudy.weather
+        )
     }
 }
 
@@ -26,7 +34,11 @@ fun CloudyPreview() {
 @Composable
 fun RainyPreview() {
     Surface {
-        WeatherScreen(onNextClick = {}, onReloadClick = {}, weather = ImageConstants.Rainy.weather)
+        BoxContentLayout(
+            onNextClick = {},
+            onReloadClick = {},
+            weather = ImageConstants.Rainy.weather
+        )
     }
 }
 
@@ -34,6 +46,10 @@ fun RainyPreview() {
 @Composable
 fun SnowPreview() {
     Surface {
-        WeatherScreen(onNextClick = {}, onReloadClick = {}, weather = ImageConstants.Snow.weather)
+        BoxContentLayout(
+            onNextClick = {},
+            onReloadClick = {},
+            weather = ImageConstants.Snow.weather
+        )
     }
 }
